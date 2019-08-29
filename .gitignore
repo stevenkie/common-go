@@ -87,3 +87,6 @@ docker-volumes/var
 
 # IDE
 .idea
+
+app.go
+common-go
