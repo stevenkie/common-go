@@ -16,12 +16,18 @@ func init() {
 type Config struct {
 	LogLevel  string
 	ShortPath bool
-	Formatter logrus.Formatter
+	Formatter *logrus.Formatter
 }
 
 // SetLogConfig set config for logrus
 func SetLogConfig(config Config) {
-	SetFormatter(config.Formatter)
-	baseLogger.SetLevel(config.LogLevel)
+	if len(config.LogLevel) > 0 {
+		baseLogger.SetLevel(config.LogLevel)
+	}
+
+	if config.Formatter != nil {
+		SetFormatter(*config.Formatter)
+	}
+
 	shortPathFile = config.ShortPath
 }
