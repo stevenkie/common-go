@@ -21,13 +21,12 @@ type Config struct {
 func InitDatadog(c Config) error {
 	client, err := statsd.New(c.Endpoint)
 
-	// client, err := dogstatsd.New(c.Endpoint)
 	if err != nil {
 		log.WithField("error", err).Fatal("Failed to init datadog instance")
 		return err
 	}
 
-	client.Namespace = c.ServiceName
+	client.Namespace = c.ServiceName + "."
 	client.Tags = c.DefaultTags
 
 	ddog = &Datadog{client}
