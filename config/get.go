@@ -1,6 +1,8 @@
 package config
 
 import (
+	"time"
+
 	"github.com/sirupsen/logrus"
 	log "github.com/sleey/common-go/log"
 )
@@ -154,5 +156,43 @@ func GetStringMapString(key string, configName ...string) (value map[string][]st
 	}
 
 	value = vInstances[name].GetStringMapStringSlice(key)
+	return
+}
+
+// GetDuration get configuration value from an instance type time.Duration
+func GetDuration(key string, configName ...string) (value time.Duration) {
+	name := DefaultConfigName
+
+	if len(configName) == 1 {
+		name = configName[0]
+	}
+
+	if vInstances[name] == nil {
+		log.WithFields(logrus.Fields{
+			"name": name,
+		}).Error("Viper instance isn't initialized")
+		return
+	}
+
+	value = vInstances[name].GetDuration(key)
+	return
+}
+
+// GetTime get configuration value from an instance type time.Time
+func GetTime(key string, configName ...string) (value time.Time) {
+	name := DefaultConfigName
+
+	if len(configName) == 1 {
+		name = configName[0]
+	}
+
+	if vInstances[name] == nil {
+		log.WithFields(logrus.Fields{
+			"name": name,
+		}).Error("Viper instance isn't initialized")
+		return
+	}
+
+	value = vInstances[name].GetTime(key)
 	return
 }
