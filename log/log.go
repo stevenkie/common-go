@@ -179,7 +179,7 @@ func (l logger) sourced() *logrus.Entry {
 	} else {
 		if shortPathFile {
 			list := strings.Split(file, "/")
-			file = strings.Join(list[len(list)-2:], "/")
+			file = strings.Join(list[len(list)-3:], "/")
 		}
 	}
 	return l.entry.WithField("prefix", fmt.Sprintf("%s:%d", file, line))
