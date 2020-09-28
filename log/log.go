@@ -307,6 +307,11 @@ func SetLevel(level string) {
 	baseLogger.SetLevel(level)
 }
 
+// SetOutput set logrus logging output
+func SetOutput(output io.Writer) {
+	origLogger.SetOutput(output)
+}
+
 type errorLogWriter struct{}
 
 func (errorLogWriter) Write(b []byte) (int, error) {
