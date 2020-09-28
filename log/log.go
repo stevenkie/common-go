@@ -307,7 +307,7 @@ func SetLevel(level string) {
 	baseLogger.SetLevel(level)
 }
 
-// SetOutput set logrus logging level
+// SetOutput set logrus logging output
 func SetOutput(output io.Writer) {
 	origLogger.SetOutput(output)
 }
