@@ -19,7 +19,7 @@ type Config struct {
 
 // InitDatadog init datadog client
 func InitDatadog(c Config) error {
-	client, err := statsd.New(c.Endpoint)
+	client, err := statsd.New(c.Endpoint, statsd.WithoutTelemetry())
 
 	if err != nil {
 		log.WithField("error", err).Fatal("Failed to init datadog instance")
